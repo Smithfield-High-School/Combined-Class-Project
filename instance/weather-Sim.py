@@ -5,10 +5,10 @@ import time
 
 
 def insert_weather_data(cursor, conn):
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    temperature = round(random.gauss(20, 3), 2)
-    humidity = round(random.randint(30, 70), 2)
-    pressure = round(random.gauss(1013, 5), 2)
+    now = datetime.now().isoformat()
+    temperature: int = "{:.2f}".format(random.uniform(60.00, 90.00))
+    humidity: int = "{:.2f}".format(random.uniform(30.00, 70.00))
+    pressure:int = "{:.2f}".format(random.uniform(1000.00, 1025.00))
 
     cursor.execute("""
         INSERT INTO weather(timestamp, temperature, humidity, pressure)
