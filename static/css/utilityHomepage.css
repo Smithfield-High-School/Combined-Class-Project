@@ -1,0 +1,50 @@
+body {
+    background-color: lightblue;
+   }
+   h1{
+    text-align: center;
+    padding: 70px;
+    font-size: 50x;
+    font-family: copperplate;
+   }
+   button {
+    font-family: monospace;
+    background-color: white;
+    font-size: 30px;
+    color: black;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 25px;
+    outline: blue;
+    bottom: 80px;
+   }
+   button:hover {
+    color:rgb(25, 25, 235)
+   }
+   button:active {
+    transform: translateY(4px);
+    color: rgb(19, 19, 250);
+   }
+   .household{
+    text-align: center;
+    font-size: 25px;
+    border: none;
+   }
+   .header2 {
+    text-align: center;
+    font-size: 35px;
+   }
+   .data{
+    position: relative;
+    top: 0px;
+    left: 530px;
+    padding: 30px;
+   }
+#water {
+    color:black;
+}
+#box {
+    color: black;
+}

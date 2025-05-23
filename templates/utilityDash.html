@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="../static/css/utilityHomepage.css">
+ <title>Document</title>
+</head>
+<body>
+
+
+ <div class="header">
+   <h1>Household utility tracker</h1>
+   </div>
+
+
+   <div class="header2">
+     <h2>Household utilities</h2>
+   </div>
+
+
+
+
+   <div class="household">
+
+
+   
+      <div class="data">
+        <a href="{{ url_for('utilityExpand') }}">
+          <button> View data</button>
+        </a>
+      </div>
+
+    <form action="/utilityHomepage" method="POST">
+      <div id="box">
+        <h2>Electricity</h2>
+        <input type="number" name="Electricity" id="Electricity">
+      </div>
+
+      <div id="water">
+        <h2>Water usage</h2>
+        <input type="number" name="Water" id="Water">
+      </div>
+    
+
+      <input type="submit" value="submit">
+    </form>
+     
+
+
+  
+     <script>
+       var div = document.getElementById('box');
+       var display = false;
+  
+       function showvalues() {
+         if (display) {
+           div.style.display = 'none';
+         } else {
+            div.style.display = 'block';
+         }
+         display = !display;
+       }
+     </script>
+
+      <script>
+        var div = document.getElementById('water');
+        var display = false;
+
+        function showvalues() {
+          if (display) {
+            div.style.display = 'none';
+          } else {
+            div.style.display = 'block';
+          }
+          display = !display;
+        }
+      </script>
+
+
+</body>
+</html>

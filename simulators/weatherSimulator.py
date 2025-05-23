@@ -1,26 +1,26 @@
-from datetime import datetime
-import random
 import sqlite3
-import time 
+import random
+import time
+from datetime import datetime
+
+def create_connection():
+    conn = sqlite3.connect('instance/Data.db')
+    return conn, conn.cursor()
 
 
 def insert_weather_data(cursor, conn):
     now = datetime.now().isoformat()
-    temperature: int = "{:.2f}".format(random.uniform(60.00, 90.00))
-    humidity: int = "{:.2f}".format(random.uniform(30.00, 70.00))
-    pressure:int = "{:.2f}".format(random.uniform(1000.00, 1025.00))
+    temperature = round(random.gauss(20, 3), 1)
+    humidity = random.randint(40, 100)
+    pressure = round(random.gauss(1013, 5), 1)
 
     cursor.execute("""
-        INSERT INTO weather(timestamp, temperature, humidity, pressure)
+        INSERT INTO weather (timestamp, temperature, humidity, pressure)
         VALUES (?, ?, ?, ?)
     """, (now, temperature, humidity, pressure))
 
     conn.commit()
     print(f"Inserted: {now}, {temperature}°C, {humidity}%, {pressure} hPa")
-
-def create_connection():
-    conn = sqlite3.connect('instance/Data.db')
-    return conn, conn.cursor()
 
 def main():
     conn, cursor = create_connection()

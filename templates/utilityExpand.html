@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/utilityGraph.css">
+    <title>Expand Page</title> 
+</head>
+<body>
+    <h1>Expand Page</h1>
+
+    <div id="main-container">
+        
+        <div id="chart-container">
+            <canvas id="my-chart"></canvas>
+        </div>
+    </div>
+      
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+    <script>
+
+
+        const elecData = JSON.parse('{{ edata | tojson | safe }}');
+        const waterData = JSON.parse('{{ wdata | tojson | safe }}');
+        const labels = JSON.parse('{{ labels | tojson | safe }}')
+        const data = {
+            labels: labels,
+            datasets: [{
+                data: elecData,
+                label: 'Electricty',
+                },
+                {
+                data: waterData,
+                label: 'Water Usage',
+            }]
+        };
+
+        const ctx = document.getElementById('my-chart').getContext('2d');
+        const myChart = new Chart(
+            ctx,
+            {
+                type:'bar',
+                data:data
+
+            }
+        )
+        myChart
+    </script>
+</body>
+</html>

@@ -2,10 +2,75 @@
 
 {% block head %}
 <title>Assignment</title>
+<link rel="stylesheet" href="../static/css/index.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
 
 {% block body %}
 <div class="content">
-    <h1>I (Aiden) Have set up a basic skeleton of the project for yall. Blessings and Curses to you all.</h1>
+    <div class="center">
+        <h1>Welcome to the Weather and utility Tracker!</h1>
+        <h3>Please choose to view utility or weather data!</h3>
+    </div>
+    <div style="display: flex; height: 1000px; width: 1700px;">
+        <div style="display:block; height: 500px; width: 850px;">
+            <div style="width: 80%; height: 80%;">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="center">
+                <h2 style="margin-top: 50px;">Press the button below to see Weather data!</h2>
+                <a href="{{ url_for('weatherHomepage') }}">
+                <button class="button">To Weather</button>
+            </a>
+            </div>
+            
+        </div>
+        <hr style="margin-left: 30px; margin-right: 100px;">
+        <div style="display:block; height: 500px; width: 720px;">
+            <div style="width: 100%; height: auto;">
+                <canvas id="my-chart"></canvas>
+            </div>
+            <div class="center">
+                <h2 style="margin-top: 50px;">Press the button below to see Utilities data!</h2>
+                <a href="{{ url_for('utilityHomepage') }}">
+                <button class="button">To Utility</button>
+            </a>
+            </div>
+            
+            
+        </div>
+        
+    </div>
 </div>
+
+<script src="../static/javascript/weatherChart.js"></script>
+<script>
+
+
+        const elecData = JSON.parse('{{ edata | tojson | safe }}');
+        const waterData = JSON.parse('{{ wdata | tojson | safe }}');
+        const labels = JSON.parse('{{ labels | tojson | safe }}')
+        const data = {
+            labels: labels,
+            datasets: [{
+                data: elecData,
+                label: 'Electricty',
+                },
+                {
+                data: waterData,
+                label: 'Water Usage',
+            }]
+        };
+
+        const utilctx = document.getElementById('my-chart').getContext('2d');
+        const utilChart = new Chart(
+            utilctx,
+            {
+                type:'bar',
+                data:data
+
+            }
+        )
+        utilChart
+    </script>
 {% endblock %}
